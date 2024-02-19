@@ -51,19 +51,19 @@
 
         <template v-slot:append>
           <v-chip color="orange" class="mr-2" @click="goToViewBookings">
-            <v-icon color="white">mdi-calendar-clock</v-icon>
+            <v-icon color="orange">mdi-calendar-clock</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2" @click="showSearch = !showSearch">
-            <v-icon color="white">mdi-magnify</v-icon>
+            <v-icon color="orange">mdi-magnify</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2">
-            <v-icon color="white">mdi-help-circle-outline</v-icon>
+            <v-icon color="orange">mdi-help-circle-outline</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2">
-            <v-icon color="white">mdi-cog</v-icon>
+            <v-icon color="orange">mdi-cog</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2" @click="toggleNotification">
-            <v-icon color="white">mdi-bell</v-icon>
+            <v-icon color="orange">mdi-bell</v-icon>
             <span v-if="notificationCount > 0" class="notification-count">{{ notificationCount }}</span>
         </v-chip>
 
@@ -86,9 +86,14 @@
       <v-text-field v-model="newRoom.capacity" label="Capacity"></v-text-field>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" @click="addRoom">Add</v-btn>
-      <v-btn @click="cancelAddRoom">Cancel</v-btn>
-    </v-card-actions>
+  <v-chip color="green" @click="addRoom" style="border-radius:2px;margin: 8px;" elevation="2">
+    <v-icon left>mdi-plus</v-icon> Add
+  </v-chip>
+  <v-chip @click="cancelAddRoom" style="border-radius:2px;" elevation="2" color="red">
+    <v-icon left>mdi-close</v-icon> Cancel
+  </v-chip>
+</v-card-actions>
+
   </v-card>
 </v-dialog>
 

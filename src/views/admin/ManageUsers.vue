@@ -51,19 +51,19 @@
 
         <template v-slot:append>
           <v-chip color="orange" class="mr-2" @click="goToViewBookings">
-            <v-icon color="white">mdi-calendar-clock</v-icon>
+            <v-icon color="orange">mdi-calendar-clock</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2" @click="showSearch = !showSearch">
-            <v-icon color="white">mdi-magnify</v-icon>
+            <v-icon color="orange">mdi-magnify</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2">
-            <v-icon color="white">mdi-help-circle-outline</v-icon>
+            <v-icon color="orange">mdi-help-circle-outline</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2">
-            <v-icon color="white">mdi-cog</v-icon>
+            <v-icon color="orange">mdi-cog</v-icon>
         </v-chip>
         <v-chip color="orange" class="mr-2" @click="toggleNotification">
-            <v-icon color="white">mdi-bell</v-icon>
+            <v-icon color="orange">mdi-bell</v-icon>
             <span v-if="notificationCount > 0" class="notification-count">{{ notificationCount }}</span>
         </v-chip>
          
