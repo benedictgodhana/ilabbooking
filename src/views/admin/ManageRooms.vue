@@ -127,7 +127,24 @@
   <v-chip color="red" small @click="deleteRoom(item)">
     <v-icon>mdi-delete</v-icon>
   </v-chip>
+
+  <v-dialog v-model="showRoomDetailsDialog" max-width="800px">
+    <v-card>
+      <v-card-title>Room Details</v-card-title>
+      <v-card-text>
+        <div>Name: {{ selectedRoom.name }}</div>
+        <div>Capacity: {{ selectedRoom.capacity }}</div>
+        <div>Description: {{ selectedRoom.description }}</div>
+
+        <!-- Add more details here as needed -->
+      </v-card-text>
+      <v-card-actions>
+        <v-chip style="border-radius: 2px;" elevation="3" color="primary" @click="showRoomDetailsDialog = false">  <v-icon left>mdi-close</v-icon>Close</v-chip>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
+
 
 </v-data-table>
 </v-card>
@@ -156,6 +173,8 @@
           { title: 'Description', value: 'description' }, // Corrected 'Description' to 'description'
           { title: 'Actions', value: 'actions', sortable: false },
         ],
+        showRoomDetailsDialog: false,
+        selectedRoom: {},
         rooms: [],
         newRoom: { name: '', capacity: '' },
         showAddRoomDialog: false,
@@ -236,6 +255,12 @@
       selectItem(index) {
         this.selectedItem = index;
       },
+
+      viewRoom(room) {
+      // Set the selected room data and show the dialog
+      this.selectedRoom = room;
+      this.showRoomDetailsDialog = true;
+    },
       async logout() {
         try {
           await axios.post('http://127.0.0.1:8000/api/logout', {}, {
