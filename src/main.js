@@ -10,6 +10,8 @@ import * as directives from 'vuetify/directives'
 import { VCalendar } from 'vuetify/labs/VCalendar'
 import * as labsComponents from 'vuetify/labs/components'
 import { VPicker } from 'vuetify/labs/VPicker'
+import PrimeVue from 'primevue/config';
+
 
 const vuetify = createVuetify({
   components,
@@ -23,6 +25,9 @@ const app = createApp(App)
 
 // Register the Vuetify VCalendar component
 app.component('VCalendar', VCalendar)
+
+
+app.use(PrimeVue);
 
 app.use(router)
 

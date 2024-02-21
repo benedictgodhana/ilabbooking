@@ -1,7 +1,12 @@
 <template>
   <DashboardHeader />
 
+  <v-alert v-if="successMessage" type="success">{{ successMessage }}</v-alert>
+  <v-alert v-if="errorMessage" type="error" style="margin: 10px;">{{ errorMessage }}</v-alert>
+
+
   <v-container fluid class="login-container">
+
     <v-row justify="center" align="center" class="login-row">
       <v-col cols="12" sm="8" md="6">
         <v-card class="login-card" elevation="4">
@@ -34,6 +39,8 @@ export default {
   },
   data() {
     return {
+      successMessage: '', // Success message
+      errorMessage: '', // Error message
       email: '',
       password: '',
       isLoading: false, // Loading state
@@ -64,6 +71,14 @@ export default {
 
         // Check user's role
         const userRole = response.data.role; // Assuming role is returned from the backend
+
+        this.successMessage = 'Login successful';
+
+        setTimeout(() => {
+          this.successMessage = ''; // Clear success message after 3 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
+
+        
         // Redirect to dashboard based on role
         if (userRole === 'Ilab Receptionist') {
           this.$router.push({ name: 'IlabDashboard', params: { user: user } });
@@ -71,16 +86,27 @@ export default {
           this.$router.push({ name: 'IbizDashboard', params: { user: user } });
         } else if (userRole === "Director's Receptionist") {
           this.$router.push({ name: 'DirectorDashboard', params: { user: user } });
+        } else if (userRole === "Normal User") {
+          this.$router.push({ name: 'UserDashboard', params: { user: user } });
         } else if (userRole === 'Admin') {
           this.$router.push({ name: 'AdminDashboard', params: { user: user } });
         } else {
           // Handle other roles or scenarios
           console.error('Unknown role:', userRole);
         }
+
+        this.errorMessage = '';
       } catch (error) {
         // Authentication failed
         console.error('Login failed:', error);
         this.errorMessage = 'Invalid email or password';
+
+        setTimeout(() => {
+          this.errorMessage = ''; // Clear error message after 3 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
+
+
+        this.successMessage = '';
       } finally {
         // Stop loading
         this.isLoading = false;

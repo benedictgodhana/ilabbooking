@@ -482,8 +482,7 @@ export default {
 },
 
     cancelDelete() {
-      // Reset the user to delete and close the confirmation dialog
-      this.userToDelete = null;
+      this.userToDelete = { name: '', email: '', role: '' };
       this.confirmDialog = false;
     }
 
